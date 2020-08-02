@@ -1,0 +1,42 @@
+<li
+  class="recipient-list__item mb-4"
+>
+  <div class="recipient-list__content">
+   <button *ngIf="isOwner(recipient);" type="button" class="recipient-list__item--edit" (click)="editItem(recipient);">Edit</button>
+   <button *ngIf="isOwner(recipient);" type="button" class="recipient-list__item--delete" (click)="deleteItem(recipient);">Delete</button>
+    
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  edit
+</button>
+<h5 class="recipient-list__name">{{recipient.name}}</h5>
+    <p> {{recipient.phoneNumber}}</p>
+
+    <p *ngIf="recipient.rhesus">Група крові: + {{recipient.bloodType}}</p>
+    <p *ngIf="!recipient.rhesus">Група крові: - {{recipient.bloodType}}</p>
+
+    <p *ngIf="!recipient.rhesus">Місто: {{recipient.locality }}</p>
+    <p class="recipient-list__description"> {{recipient.reason}}</p>
+    <button class="recipient-list__link btn btn-danger" (click)="respond(recipient); clicked = true;" *ngIf="!clicked; else thenBlock">Відгукнутись</button>
+    <ng-template #thenBlock><p class="recipient-respond">Дякуємо, ми зв'яжемось з вами!</p></ng-template>
+  </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     >
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</li>

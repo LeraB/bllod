@@ -1,0 +1,40 @@
+<div class="hero">
+<div class="container">
+<div class="row pb-5 pt-5">
+  <h1 class="col-md-12 col-lg-4 text-center mt-sx-0 mt-md-5">Почни рятувати життя разом з нами!</h1>
+  <img src="assets/image.png" alt="blood" class="col-md-12 col-lg-8">
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row pt-5">
+  <div class="block-give-blood col-11 col-sm-5 mb-3 col-md-4 col-lg-3 card text-center ">
+<a routerLink="/donors-info">
+    <img class="block-give-blood__img card-img-top" src="assets/noun_blood.svg">
+    <div class="card-body">
+    <p>Як стати донором крові?</p>
+    </div>
+</a>
+  </div>
+
+
+  <div *ngIf="authService.login" class="block-get-blood col-11 col-sm-5 mb-3 col-md-4 col-lg-3 card text-center">
+ <a routerLink="/new-demand">
+    <img class="block-get-blood__img card-img-top" src="assets/noun_Blood Donation.svg">
+    <div class="card-body">
+Потрібна кров?
+    </div>
+</a>
+  </div>
+
+  <div *ngIf="!authService.login" class="block-get-blood col-11 col-sm-5 mb-3 col-md-4 col-lg-3 card text-center">
+ <a routerLink="/login">
+    <img class="block-get-blood__img card-img-top" src="assets/noun_Blood Donation.svg">
+    <div class="card-body">
+Потрібна кров?
+    </div>
+</a>
+  </div>
+
+</div>
+</div>

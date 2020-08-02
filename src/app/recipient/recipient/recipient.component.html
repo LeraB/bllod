@@ -1,0 +1,77 @@
+<li
+  class="recipient-list__item mb-4"
+>
+  <div class="recipient-list__content">
+   <button *ngIf="isOwner(recipient);" type="button" class="recipient-list__item--edit" (click)="editItem(recipient);">Edit</button>
+   <button type="button" class="recipient-list__item--delete btn btn-primary mr-4" (click)="deleteItem(recipient);">Delete</button>
+    
+<button type="button" class="btn btn-primary" (click)="editItem(recipient);" data-toggle="modal" data-target="#exampleModal">
+Edit
+</button>
+<h5 class="recipient-list__name">{{recipient.name}}</h5>
+    <p> {{recipient.phoneNumber}}</p>
+
+    <p *ngIf="recipient.rhesus">Група крові: + {{recipient.bloodType}}</p>
+    <p *ngIf="!recipient.rhesus">Група крові: - {{recipient.bloodType}}</p>
+
+    <p *ngIf="!recipient.rhesus">Місто: {{recipient.locality }}</p>
+    <p class="recipient-list__description"> {{recipient.reason}}</p>
+    <button class="recipient-list__link btn btn-danger" (click)="respond(recipient); clicked = true;" *ngIf="!clicked; else thenBlock">Відгукнутись</button>
+    <ng-template #thenBlock><p class="recipient-respond">Дякуємо, ми зв'яжемось з вами!</p></ng-template>
+  </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Редагування</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="row"> 
+      <form  #formData="ngForm" [formGroup]="form" (ngSubmit)="setNewValue(recipient.id ,formData.value)" class="form col-8 my-3">
+      <div class="form__item form-field form-group">
+        <input class="form__input form-control" type="text" id="fullName" name="fullName"
+               formControlName="fullName" value="{{recipient.fullName}}" placeholder="Прізвище, ім'я, по батькові">
+      </div>
+
+      <div class="form__item form-field form-group">
+        <input class="form__input form-control" type="text" id="phoneNumber" name="phoneNumber"
+               formControlName="phoneNumber" placeholder="Телефон (+380...)">
+      </div>
+
+      <div class="form__item form-field form-group">
+        <input class="form__input form-control" type="number" min="1" max="4" id="bloodType" name="bloodType"
+               formControlName="bloodType" placeholder="Група крові">
+      </div>
+
+      <div class="form-group">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioPlus" value="option1">
+          <label class="form-check-label" for="inlineRadioPlus">+
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioMinus" value="option2">
+          <label class="form-check-label" for="inlineRadioMinus">-</label>
+        </div>
+      </div>
+      <div class="form__item form-field form-group">
+        <input class="form__input form-control" type="text" id="locality" name="locality"
+               formControlName="locality" placeholder="Місто">
+      </div>
+
+      <div class="form__item form-field form-group">
+        <textarea class="form__input form-control" id="reason" name="reason"
+               formControlName="reason" placeholder="Причина..."></textarea>
+      </div>
+      <button type="reset"  class="btn btn-outline-primary ml-2 mr-4" (click)="formData.reset()">Очистити</button>
+      <button type="submit"  class="btn btn-primary">Відправити</button>
+    </form>
+  </div>
+    </div>
+  </div>
+</div>
+
+</li>

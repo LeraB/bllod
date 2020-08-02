@@ -1,0 +1,44 @@
+<div class="container">
+  <section class="user-form user-register-form mb-5">
+    <form #formData="ngForm" [formGroup]="form"  (ngSubmit)="onSubmit(formData.value)" class="form col-4">
+      <div class="form__item form-field form-group">
+        <input class="form__input form-control" type="text" id="fullName" name="fullName"
+               formControlName="fullName" placeholder="Прізвище, ім'я, по батькові">
+      </div>
+
+      <div class="form__item form-field form-group">
+        <input class="form__input form-control" type="text" id="phoneNumber" name="phoneNumber"
+               formControlName="phoneNumber" placeholder="Телефон (+380...)">
+      </div>
+
+      <div class="form__item form-field form-group">
+        <input class="form__input form-control" type="number" min="1" max="4" id="bloodType" name="bloodType"
+               formControlName="bloodType" placeholder="Група крові">
+      </div>
+
+      <div class="form-group">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioPlus" value="option1">
+          <label class="form-check-label" for="inlineRadioPlus">+
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioMinus" value="option2">
+          <label class="form-check-label" for="inlineRadioMinus">-</label>
+        </div>
+      </div>
+      <div class="form__item form-field form-group">
+        <input class="form__input form-control" type="text" id="locality" name="locality"
+               formControlName="locality" placeholder="Місто">
+      </div>
+
+      <div class="form__item form-field form-group">
+        <textarea class="form__input form-control" id="reason" name="reason"
+               formControlName="reason" placeholder="Причина..."></textarea>
+      </div>
+      <button type="reset"  class="btn btn-outline-primary ml-2 mr-4" (click)="formData.reset()">Очистити</button>
+      <button type="submit"  class="btn btn-primary">Відправити</button>
+    </form>
+  </section>
+
+</div>

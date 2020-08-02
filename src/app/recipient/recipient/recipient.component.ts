@@ -1,0 +1,90 @@
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Recipient} from "../../models/recipient";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { CookieService } from "angular2-cookie/core";
+import {Router} from '@angular/router';
+import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
+
+@Component({
+  selector: 'app-recipient',
+  templateUrl: './recipient.component.html',
+  styleUrls: ['./recipient.component.scss']
+})
+
+export class RecipientComponent implements OnInit {
+
+  @Input() recipient: Recipient[];
+  @Input() isInFavoriteList: boolean;
+
+  @Output() addToList = new EventEmitter<Recipient>();
+  @Output() removeFromList = new EventEmitter<Recipient>();
+
+  clicked = false;
+
+  public form: FormGroup;
+  private result: object;
+  private isSubmit: boolean;
+
+  constructor(private router: Router, private http: HttpClient, private _cookieService: CookieService) {
+    this.form = new FormGroup({
+      fullName: new FormControl('', Validators.required),
+      phoneNumber: new FormControl('', [Validators.pattern('^[+]*380{0,1}[ \\s\\./0-9]*$'), Validators.maxLength(13), Validators.required]),
+      bloodType: new FormControl(1, Validators.required),
+      rhesus:  new FormControl('-', Validators.required),
+      locality: new FormControl('', Validators.required),
+      reason: new FormControl('', Validators.required),
+      userId: new FormControl(this._cookieService.get('userId'), Validators.required),
+  });
+
+  }
+
+  ngOnInit() {
+  }
+
+  public addProductToList(recipient: Recipient) {
+    this.addToList.emit(recipient);
+  }
+
+  public removeProductFromList(recipient: Recipient) {
+    this.removeFromList.emit(recipient);
+  }
+
+  public respond(event) {
+    this.http.post('http://35.242.214.136:3000/connection', {demandId : +event.id}, { headers: new HttpHeaders({'authorization':  this._cookieService.get('stel_token') })}).subscribe((data) =>{});
+    return true;
+  }
+
+  public deleteItem(demand) {
+  this.http.delete('http://35.242.214.136:3000/demand?id='+ demand.id, { headers: new HttpHeaders({'authorization':  this._cookieService.get('stel_token') })}).subscribe((data) =>{
+   window.location.reload();
+  });
+ }
+
+ public editItem(demand){
+   console.log('demand.fullName => ', demand);
+   this.form.patchValue({fullName: demand.name, phoneNumber: demand.phoneNumber, loodType: demand.bloodType.toString(), rhesus: demand.rhesus, locality: demand.locality, reason: demand.reason});
+ }
+
+  public setNewValue(id ,demand){
+ 
+   this.result = {
+        fullName: demand.fullName,
+        phoneNumber: demand.phoneNumber,
+        bloodType: demand.bloodType.toString(),
+        rhesus: demand.rhesus,
+        locality: demand.locality,
+        reason: demand.reason,
+};
+
+    this.http.put('http://35.242.214.136:3000/demand?id='+ id, demand, { headers: new HttpHeaders({'authorization':  this._cookieService.get('stel_token') })}).subscribe((data) =>{
+    window.location.reload();
+  });
+
+}
+
+ public isOwner(demand){
+  if (demand.id === this._cookieService.get('id')){
+     return true;
+  }
+ }
+}

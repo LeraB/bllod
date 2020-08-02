@@ -1,0 +1,82 @@
+<div class="container">
+<section class="user-form user-register-form mb-5">
+
+<!-- <p class="text-center mt-5 welcome-message" *ngIf="authService.login">Ласкаво просимо до нашого сервісу!</p>
+-->
+  <form  #formData="ngForm" [formGroup]="form"  (ngSubmit)="onSubmit()" class="form col-4">
+    <div class="form__item form-field form-group">
+<label>ПІБ</label>
+      <input class="form__input form-control" type="text" id="fullName" name="fullName"
+             formControlName="fullName" placeholder="Прізвище, ім'я, по батькові">
+<p *ngIf="!this.isName" style="color: red;"> Це поле - обов'язкове!</p>
+    </div>
+    <div class="form__item form-field form-group">
+
+<label>Дата народження</label>
+      <input class="form__input form-control" type="date" id="dateOfBirth" name="dateOfBirth"
+             formControlName="dateOfBirth" placeholder="Дата народження">
+    </div>
+
+    <div class="form__item form-field form-group">
+<label>Телефон</label>    
+  <input class="form__input form-control" type="text" id="phoneNumber" name="phoneNumber"
+             formControlName="phoneNumber" placeholder="Телефон (+380...)">
+      <span>Це номер телефону буде використано для роззилки в Телеграмі.</span>
+    </div>
+
+    <div class="form__item form-field form-group">
+<label>Електронна адреса</label>
+        <input class="form__input form-control"  type="text" id="email" placeholder="Електронна адреса" formControlName="email">
+    </div>
+
+    <div class="form__item form-field form-group">
+<label>Група крові</label>      
+<input class="form__input form-control" type="number" min="1" max="4" id="bloodType" name="bloodType"
+             formControlName="bloodType" placeholder="Група крові">
+    </div>
+
+    <div class="form-group">
+<label>Резус фактор</label>
+<div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioPlus" value="+" name="rhesus" formControlName="rhesus" checked>
+        <label class="form-check-label" for="inlineRadioPlus">+</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioMinus" value="-" name="rhesus" formControlName="rhesus">
+        <label class="form-check-label" for="inlineRadioMinus">-</label>
+      </div>
+    </div>
+</div>
+    <div class="form__item form-field form-group">
+<label>Місто</label>      
+<input class="form__input form-control" type="text" id="locality" name="locality"
+             formControlName="locality" placeholder="Місто">
+    </div>
+
+    <div class="form__item form-field form-group">
+<label>Дата останньої здачі крові</label>      
+<input class="form__input form-control" type="date" id="lastBeingDonor" name="lastBeingDonor"
+             formControlName="lastBeingDonor" placeholder="Дата народження">
+    </div>
+
+<!--    <div class="form__item form-field form-group">-->
+<!--      <input class="form__input form-control" type="text" id="password" name="password"-->
+<!--             formControlName="password" placeholder="Пароль">-->
+<!--    </div>-->
+
+<!--    <div class="form__item form-field form-group">-->
+<!--      <input class="form__input form-control" type="text" id="passwordTwo" name="passwordTwo"-->
+<!--             formControlName="passwordTwo" placeholder="Повторіть пароль">-->
+<!--    </div>-->
+
+    <div class="form__item form-field form-group">
+      <input class="form-check-input ml-1" type="checkbox" id="consent" name="consent" checked>
+      <label for="consent" class="form-check-label ml-4">Я даю згоду на обробку персональних даних</label>
+    </div>
+    <button type="reset"  class="btn btn-outline-primary ml-2 mr-4" (click)="formData.reset()">Reset</button>
+    <button type="submit"  class="btn btn-primary">Submit</button>
+  </form>
+</section>
+
+</div>

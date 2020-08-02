@@ -1,0 +1,31 @@
+.form__forgot-pass {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.form__forgot-pass a {
+  color: var(--primary-color);
+}
+
+.user-login-form {
+  padding-top: 20% !important;
+  text-align: center;
+}
+
+.btn-outline-primary:hover {
+color: white !important;
+}
+
+.btn-outline-primary {
+  color: var(--primary-color) !important;
+}
+
+.user-login-form--message {
+     text-align: center;
+}
+
+.user-login-form--message p {
+    font-style: italic;
+    width: 60%;
+    display: inline-block;
+}

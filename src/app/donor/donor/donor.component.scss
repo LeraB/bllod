@@ -1,0 +1,35 @@
+.donor-list__item {
+  box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.donor-list__content {
+  padding: 20px;
+  text-align: center;
+}
+
+.donor-list__name {
+  font-weight: bold;
+}
+.list-title {
+  text-align: center;
+}
+
+.donor-list__title {
+  min-height: 80px;
+}
+
+.donor-list__link {
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.donor-list__description {
+  min-height: 70px;
+}
+
+.donor-respond {
+  font-size: 15px;
+  color: red;
+  font-style: italic;
+}

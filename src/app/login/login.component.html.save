@@ -1,0 +1,9 @@
+<div class="container pt-5">
+<section class="user-form pt-5 mb-5 user-login-form" #loginForm ng-init="script()">
+<div class="user-login-form--message"><p>Ми використовуємо Телеграм, для сповіщення користувачів про нові запити крові.
+ Ввійдіть за допомогою Телеграм аккаунту, щоб завжди бути вкурсі подій. </p>
+  <div class="telegram-login" #script>
+    <ng-content></ng-content>
+  </div>
+</section>
+</div>
